@@ -1,0 +1,105 @@
+{
+  "name": "hello-n8n-first-workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f35b12fd-a5ee-4cf9-8791-87937d537aab",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3c589f3d-a118-494b-a43a-ecc5167b898e",
+              "name": "firstName",
+              "value": "Mobin",
+              "type": "string"
+            },
+            {
+              "id": "9a368a30-839f-4ecb-a654-7b64c77086f0",
+              "name": "lastName",
+              "value": "Yousefi",
+              "type": "string"
+            },
+            {
+              "id": "37cea276-2e92-42bc-8d99-3212136cca18",
+              "name": "role",
+              "value": "CS Student",
+              "type": "string"
+            },
+            {
+              "id": "76b5f98e-dc35-401d-a2bf-f11200387789",
+              "name": "learning",
+              "value": "n8n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "94a87e6f-4f6e-4082-9c33-3c29c6845def",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// items همان داده‌ای است که از نود قبلی می‌آید\n// هر item یک JSON با fields است\nreturn items.map(item => {\n  const data = item.json;\n\n  // یک فیلد جدید بسازیم\n  data.fullName = `${data.firstName} ${data.lastName}`;\n\n  // یک پیام خوش‌آمد هم بسازیم\n  data.message = `Hello ${data.fullName}! Welcome to n8n workflow automation.`;\n\n  return {\n    json: data,\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "f5cff0d1-5f89-406c-9387-0b7b76117264",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "6e019871-0568-4b2f-9c67-6dbde2dfb6ff",
+  "meta": {
+    "instanceId": "daa169217ea68ea30d6ba6ac4000fc1fa2473942c30d7f539dc37cfa3d20a6b8"
+  },
+  "id": "yxFZhxw19VlRCijY",
+  "tags": []
+}
