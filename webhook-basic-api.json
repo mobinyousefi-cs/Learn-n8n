@@ -1,0 +1,61 @@
+{
+  "name": "webhook-basic-api",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "hello-api",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "dd5b9bc7-ff27-470b-856a-dd99976c0c50",
+      "name": "Webhook",
+      "webhookId": "4cd10020-5a4b-465c-a9e3-4617e4cf657b"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "Hello {{$json.name}}! Your project '{{$json.project}}' is ready.\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "507ce3c0-d1bf-486a-b053-613ec1fcf702",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": false
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e9063a03-21e4-4785-ad22-2bae531a3daa",
+  "meta": {
+    "instanceId": "daa169217ea68ea30d6ba6ac4000fc1fa2473942c30d7f539dc37cfa3d20a6b8"
+  },
+  "id": "jjvuGwQWZFKzv4W0",
+  "tags": []
+}
